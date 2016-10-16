@@ -1,0 +1,7 @@
+D:\Documents\Visual Studio 2015\Projects\ServicesKiller\Onstogram\Onstogram.DataLayer.SQL\bin\Debug\Onstogram.DataLayer.SQL.dll
+D:\Documents\Visual Studio 2015\Projects\ServicesKiller\Onstogram\Onstogram.DataLayer.SQL\bin\Debug\Onstogram.DataLayer.SQL.pdb
+D:\Documents\Visual Studio 2015\Projects\ServicesKiller\Onstogram\Onstogram.DataLayer.SQL\bin\Debug\Onstogram.Model.dll
+D:\Documents\Visual Studio 2015\Projects\ServicesKiller\Onstogram\Onstogram.DataLayer.SQL\bin\Debug\Onstogram.Model.pdb
+D:\Documents\Visual Studio 2015\Projects\ServicesKiller\Onstogram\Onstogram.DataLayer.SQL\obj\Debug\Onstogram.DataLayer.SQL.csprojResolveAssemblyReference.cache
+D:\Documents\Visual Studio 2015\Projects\ServicesKiller\Onstogram\Onstogram.DataLayer.SQL\obj\Debug\Onstogram.DataLayer.SQL.dll
+D:\Documents\Visual Studio 2015\Projects\ServicesKiller\Onstogram\Onstogram.DataLayer.SQL\obj\Debug\Onstogram.DataLayer.SQL.pdb

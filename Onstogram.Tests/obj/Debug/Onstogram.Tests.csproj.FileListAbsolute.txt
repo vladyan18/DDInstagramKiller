@@ -1,0 +1,11 @@
+D:\Documents\Visual Studio 2015\Projects\ServicesKiller\Onstogram\Onstogram.Tests\bin\Debug\Onstogram.Tests.dll
+D:\Documents\Visual Studio 2015\Projects\ServicesKiller\Onstogram\Onstogram.Tests\bin\Debug\Onstogram.Tests.pdb
+D:\Documents\Visual Studio 2015\Projects\ServicesKiller\Onstogram\Onstogram.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+D:\Documents\Visual Studio 2015\Projects\ServicesKiller\Onstogram\Onstogram.Tests\bin\Debug\Onstogram.DataLayer.SQL.dll
+D:\Documents\Visual Studio 2015\Projects\ServicesKiller\Onstogram\Onstogram.Tests\bin\Debug\Onstogram.Model.dll
+D:\Documents\Visual Studio 2015\Projects\ServicesKiller\Onstogram\Onstogram.Tests\bin\Debug\Onstogram.DataLayer.SQL.pdb
+D:\Documents\Visual Studio 2015\Projects\ServicesKiller\Onstogram\Onstogram.Tests\bin\Debug\Onstogram.Model.pdb
+D:\Documents\Visual Studio 2015\Projects\ServicesKiller\Onstogram\Onstogram.Tests\bin\Debug\ru\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+D:\Documents\Visual Studio 2015\Projects\ServicesKiller\Onstogram\Onstogram.Tests\obj\Debug\Onstogram.Tests.csprojResolveAssemblyReference.cache
+D:\Documents\Visual Studio 2015\Projects\ServicesKiller\Onstogram\Onstogram.Tests\obj\Debug\Onstogram.Tests.dll
+D:\Documents\Visual Studio 2015\Projects\ServicesKiller\Onstogram\Onstogram.Tests\obj\Debug\Onstogram.Tests.pdb
