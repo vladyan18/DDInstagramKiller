@@ -1,4 +1,0 @@
-D:\Documents\Visual Studio 2015\Projects\ServicesKiller\Onstogram\Onstogram.Model\bin\Debug\Onstogram.Model.dll
-D:\Documents\Visual Studio 2015\Projects\ServicesKiller\Onstogram\Onstogram.Model\bin\Debug\Onstogram.Model.pdb
-D:\Documents\Visual Studio 2015\Projects\ServicesKiller\Onstogram\Onstogram.Model\obj\Debug\Onstogram.Model.dll
-D:\Documents\Visual Studio 2015\Projects\ServicesKiller\Onstogram\Onstogram.Model\obj\Debug\Onstogram.Model.pdb
