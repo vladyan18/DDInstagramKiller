@@ -20,9 +20,23 @@ namespace Onstogram.DataLayer.SQL
             _connectionString = connectionString;
         }
 
-        public Comment AddCommentToImage(Comment comment, Guid imageId)
+        public Comment AddCommentToImage(Guid imageId, Comment comment)
         {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                using (var command = connection.CreateCommand())
+                {
+                    comment.Id = Guid.NewGuid();
+                    command.CommandText = "insert into comments (id, [user id], [img id], text) values (@id, @uid, @iid, @text)";
+                    command.Parameters.AddWithValue("@id", comment.Id);
+                    command.Parameters.AddWithValue("@uid", comment.UserId);
+                    command.Parameters.AddWithValue("@iid", imageId);
+                    command.Parameters.AddWithValue("@text", comment.Text);
+                    command.ExecuteNonQuery();
+                    return comment;
+                }
+            }
         }
 
         public Image AddImage(Image image)
@@ -61,14 +75,32 @@ namespace Onstogram.DataLayer.SQL
             }
         }
 
-        public Comment DeleteComment(Guid commentId)
+        public void DeleteComment(Guid commentId)
         {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "delete from comments where id = @id";
+                    command.Parameters.AddWithValue("@id", commentId);
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
-        public Image DeleteImage(Guid imageId)
+        public void DeleteImage(Guid imageId)
         {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "delete from images where id = @id";
+                    command.Parameters.AddWithValue("@id", imageId);
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
         public Image GetImage(Guid imageId)
@@ -82,27 +114,102 @@ namespace Onstogram.DataLayer.SQL
                     command.Parameters.AddWithValue("@id", imageId);
                     using (var reader = command.ExecuteReader())
                     {
-                        reader.Read();
-                        var img = new Image();
-                        img.Id = reader.GetGuid(0);
-                        img.Picture = new byte[((byte[])reader["picture"]).Length];
-                        img.Picture = (byte[])reader["picture"];
-                        img.Time = reader.GetDateTime(2);
-                        return img;
+                        if (reader.Read())
+                        {
+                            var img = new Image();
+                            img.Id = reader.GetGuid(0);
+                            img.Picture = new byte[((byte[])reader["picture"]).Length];
+                            img.Picture = (byte[])reader["picture"];
+                            img.Time = reader.GetDateTime(2);
+                            return img;
+                        } 
+                        else
+                        {
+                            return null;
+                        }
                     }
 
                 }
             }
         }
 
-        public Comment[] GetImageComments(Guid imageId)
+        public Comment GetComment(Guid commentId)
         {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "select id, text, [img id], [user id] from comments where id = @id";
+                    command.Parameters.AddWithValue("@id", commentId);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        reader.Read();
+                        var comment = new Comment();
+                        comment.Id = reader.GetGuid(0);
+                        comment.Text = reader.GetString(1);
+                        comment.ImgId = reader.GetGuid(2);
+                        comment.UserId = reader.GetGuid(3);
+                        return comment;
+                    }
+
+                }
+            }
         }
 
-        public Image[] GetLastImages()
+        public List<Comment> GetImageComments(Guid imageId)
         {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "select id, [user id], text from comments where [img id] = @iid";
+                    command.Parameters.AddWithValue("@iid", imageId);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        List<Comment> comments = new List<Comment>();
+                        while (reader.Read())
+                        {
+                            comments.Add(new Comment
+                            {
+                            Id = reader.GetGuid(0),
+                            UserId = reader.GetGuid(1),
+                            Text = reader.GetString(2),
+                            ImgId = imageId 
+                            });
+                        }
+                        return comments;
+                    }
+
+                }
+            }
+        }
+
+        public List<Image> GetLastImages()
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "select TOP 10 id, picture, time from images order by time desc ";
+                    using (var reader = command.ExecuteReader())
+                    {
+                        List<Image> images = new List<Image>();
+                        while (reader.Read())
+                        {
+                            images.Add(new Image {
+                            Id = reader.GetGuid(0),
+                            Picture = (byte[])reader["picture"],
+                            Time = reader.GetDateTime(2),
+                            });
+                        }
+                        return images;
+                    }
+
+                }
+            }
         }
 
         public User GetUser(Guid id)
@@ -128,6 +235,74 @@ namespace Onstogram.DataLayer.SQL
             }
         }
 
+        public List<Image> GetImagesByHashtag(string tag)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "select i.id, i.picture, i.time from images i inner join hashtgs_images h on  i.id = h.[img id]  inner join hashtags h2 on h2.text = @txt and h.[hastag id] = h2.id";
+                    command.Parameters.AddWithValue("@txt", tag);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        List<Image> images = new List<Image>();
+                        while (reader.Read())
+                        {
+                            images.Add(new Image
+                            {
+                                Id = reader.GetGuid(0),
+                                Picture = (byte[])reader["picture"],
+                                Time = reader.GetDateTime(2),
+                            });
+                        }
+                        return images;
+                    }
 
+                }
+            }
+        }
+
+        public void addHashTagToImage(Guid imageId, string tag)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                Guid id;
+                using (var command = connection.CreateCommand())
+                {
+                    using (var idcommand = connection.CreateCommand())
+                    {
+                        idcommand.CommandText = "select id from hashtags where text = @txt";
+                        idcommand.Parameters.AddWithValue("@txt", tag);
+
+                        using (var reader = idcommand.ExecuteReader())
+                        {
+                            if (reader.Read())
+                                id = reader.GetGuid(0);
+                            else id = Guid.Empty;
+                        }
+                    }
+
+                    if (id == Guid.Empty)
+                    {
+                        id = Guid.NewGuid();
+                        using (var idcommand = connection.CreateCommand())
+                        {
+                            idcommand.CommandText = "insert into hashtags (id, text) values (@id, @txt)";
+                            idcommand.Parameters.AddWithValue("@id", id);
+                            idcommand.Parameters.AddWithValue("@txt", tag);
+                            idcommand.ExecuteNonQuery();
+                        }
+                    }
+
+                    command.CommandText = "insert into hashtgs_images ([img id], [hastag id]) values (@iid, @hid)";
+                    command.Parameters.AddWithValue("@iid", imageId);
+                    command.Parameters.AddWithValue("@hid", id);
+                    command.ExecuteNonQuery();
+
+                }
+            }
+        }
     }
 }

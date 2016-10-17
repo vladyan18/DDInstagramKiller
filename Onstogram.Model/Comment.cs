@@ -9,6 +9,8 @@ namespace Onstogram.Model
     public class Comment
     {
         public Guid Id { get; set; }
+        public Guid ImgId { get; set; }
+        public Guid UserId { get; set; }
         public DateTime Time { get; set; }
         public string Text { get; set; }
     }

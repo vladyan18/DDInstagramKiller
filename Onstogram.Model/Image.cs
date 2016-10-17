@@ -12,6 +12,6 @@ namespace Onstogram.Model
         public Guid UserId { get; set; }
         public DateTime Time { get; set; }
         public byte[] Picture { get; set; }
-        public string[] HashTag { get; set; }
+        public string[] HashTags { get; set; }
     }
 }

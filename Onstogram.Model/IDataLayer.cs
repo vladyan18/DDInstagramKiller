@@ -13,12 +13,16 @@ namespace Onstogram.Model
 
         Image AddImage(Image image);
         Image GetImage(Guid imageId);
-        Image DeleteImage(Guid imageId);
+        void DeleteImage(Guid imageId);
 
-        Comment AddCommentToImage(Comment comment, Guid imageId);
-        Comment[] GetImageComments(Guid imageId);
-        Comment DeleteComment(Guid commentId);
+        Comment AddCommentToImage(Guid imageId, Comment comment );
+        List<Comment> GetImageComments(Guid imageId);
+        Comment GetComment(Guid id);
+        void DeleteComment(Guid commentId);
 
-        Image[] GetLastImages();
+        void addHashTagToImage(Guid imageId, string tag);
+
+        List<Image> GetLastImages();
+        List<Image> GetImagesByHashtag(string tag);
     }
 }
