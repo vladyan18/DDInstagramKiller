@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Onstogram.Model", "Onstogra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Onstogram.DataLayer.SQL", "Onstogram.DataLayer.SQL\Onstogram.DataLayer.SQL.csproj", "{F9E75441-22F0-49FE-8622-D2854FE18E2D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Onstogram.WebAPI", "Onstogram.WebAPI\Onstogram.WebAPI.csproj", "{307D85B9-715D-4CDD-96F9-7D2EA6D22F19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F9E75441-22F0-49FE-8622-D2854FE18E2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9E75441-22F0-49FE-8622-D2854FE18E2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9E75441-22F0-49FE-8622-D2854FE18E2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{307D85B9-715D-4CDD-96F9-7D2EA6D22F19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{307D85B9-715D-4CDD-96F9-7D2EA6D22F19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{307D85B9-715D-4CDD-96F9-7D2EA6D22F19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{307D85B9-715D-4CDD-96F9-7D2EA6D22F19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
