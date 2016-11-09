@@ -1,2 +1,2 @@
 # Onstogram
-Like Instagram, nut onstogram ;)
+Like Instagram, nut Onstogram ;)
